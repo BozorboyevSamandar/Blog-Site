@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{title}} - {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'nav/sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+    {% for item in news %}
+    <div class="card mb-3">
+        <div class="card-header">
+            Bo'lim: {{ item.category }}
+        </div>
+        <div class="card-body">
+            <div class="media col-md-12 col-cm-4">
+                {% if item.photo %}
+                <img alt="" class="" src="{{ item.photo.url }} " width="350px">
+                {% else %}
+                <img alt="" class=""
+                     src="https://www.iekakmi-roadtrips.gr/plugins/fullpage/examples/imgs/bg1.jpg"
+                     width="350px">
+                {% endif %}
+                <div class="media-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
+                    <a class="btn btn-primary" href="#">Batafsil</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            {{ item.created_at|date:"Y-m-d H:i:s" }}
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
