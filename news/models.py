@@ -1,8 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
 class News(models.Model):
     title = models.CharField(max_length=150, verbose_name='Sarlavha')
     content = models.TextField(blank=True, verbose_name='Tarif')
